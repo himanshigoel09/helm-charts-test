@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: consumer-loan-api
+  name: {{ .Values.application2.name }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: consumer-loan-api
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: consumer-loan-api
+    spec:
+      containers:
+        - image: {{ .Values.image.repository }}
+          name: consumer-loan-api
+          imagePullPolicy: {{ .Values.application2.image.pullPolicy }}
+          resources: {}
+          ports:
+            - containerPort: 8080
+status: {}

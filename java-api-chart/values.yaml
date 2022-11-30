@@ -1,0 +1,29 @@
+replicaCount: 2
+image:
+  repository: 461935164411.dkr.ecr.ap-southeast-2.amazonaws.com/demo-hello-world:latest
+  pullPolicy: Always
+  tag: ''
+imagePullSecrets: []
+nameOverride: ''
+fullnameOverride: ''
+podAnnotations: {}
+podSecurityContext: {}
+securityContext: {}
+service:
+  type: ClusterIP
+  port: 80
+  tls: []
+resources: {}
+nodeSelector: {}
+tolerations: []
+affinity: {}
+application:
+  name: rest-api
+application2:
+  name: consumer-loan
+  image:
+    repository: 461935164411.dkr.ecr.ap-southeast-2.amazonaws.com/demo-hello-world:latest
+    pullPolicy: Always
+    # Overrides the image tag whose default is the chart appVersion.
+    tag: ""
+

@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: plait-application
+  annotations:
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: a32ab15040b5f42058979258b373be0b-1854881224.ap-southeast-2.elb.amazonaws.com
+      http:                   #incoming request gets forward to internal service
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: {{.Values.application.name}}          #name of the service i.e metadata-name
+                port:                                       #spec-ports-port
+                  number: 80
+          - pathType: Prefix
+            path: "/consumer-loan"
+            backend:
+              service:
+                name: consumer-loan
+                port:
+                  number: 80
