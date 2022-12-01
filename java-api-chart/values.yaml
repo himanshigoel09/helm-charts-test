@@ -1,6 +1,6 @@
 replicaCount: 2
 image:
-  repository: 461935164411.dkr.ecr.ap-southeast-2.amazonaws.com/demo-hello-world:latest
+  repository: 461935164411.dkr.ecr.ap-southeast-2.amazonaws.com/demo-hello-world:v2
   pullPolicy: Always
   tag: ''
 imagePullSecrets: []
@@ -20,9 +20,9 @@ affinity: {}
 application:
   name: rest-api
 application2:
-  name: consumer-loan
+  name: consumer-loan-api
   image:
-    repository: 461935164411.dkr.ecr.ap-southeast-2.amazonaws.com/demo-hello-world:latest
+    repository: 461935164411.dkr.ecr.ap-southeast-2.amazonaws.com/myproject:v3
     pullPolicy: Always
     # Overrides the image tag whose default is the chart appVersion.
     tag: ""

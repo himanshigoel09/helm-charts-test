@@ -3,23 +3,23 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    app: consumer-loan-api
+    app: {{ .Values.application2.name }}
   name: {{ .Values.application2.name }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: consumer-loan-api
+      app: {{ .Values.application2.name }}
   strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: consumer-loan-api
+        app: {{ .Values.application2.name }}
     spec:
       containers:
-        - image: {{ .Values.image.repository }}
-          name: consumer-loan-api
+        - image: {{ .Values.application2.image.repository }}
+          name: {{ .Values.application2.name }}
           imagePullPolicy: {{ .Values.application2.image.pullPolicy }}
           resources: {}
           ports:

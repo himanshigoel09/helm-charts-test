@@ -1,25 +1,30 @@
+
+
+################################
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: plait-application
   annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+
 spec:
   ingressClassName: nginx
   rules:
-    - host: a32ab15040b5f42058979258b373be0b-1854881224.ap-southeast-2.elb.amazonaws.com
+    - host: a5fcea93d970d4fdfb1c94dc0168cdd9-1882193537.ap-southeast-2.elb.amazonaws.com
       http:                   #incoming request gets forward to internal service
         paths:
           - pathType: Prefix
-            path: "/"
+            path: /demo(/|$)(.*)
             backend:
               service:
                 name: {{.Values.application.name}}          #name of the service i.e metadata-name
                 port:                                       #spec-ports-port
                   number: 80
           - pathType: Prefix
-            path: "/consumer-loan"
+            path: /consumer(/|$)(.*)
             backend:
               service:
-                name: consumer-loan
+                name: {{.Values.application2.name}}
                 port:
                   number: 80

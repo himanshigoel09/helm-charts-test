@@ -6,7 +6,11 @@ metadata:
     run: {{.Values.application.name}}
 spec:
   ports:
-    - port: 8080
+    - port: 80
+      targetPort: 8080
   selector:                               #labels inside the pod definition (in this case spec-template-metadata-labels
     app: {{.Values.application.name}}
   type: ClusterIP
+
+
+## Ingress (80:80) -> service (80:8080) -> pod (8080)
