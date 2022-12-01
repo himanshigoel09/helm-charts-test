@@ -6,7 +6,7 @@ kind: Ingress
 metadata:
   name: plait-application
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
+   # nginx.ingress.kubernetes.io/rewrite-target: /$2
 
 spec:
   ingressClassName: nginx
@@ -15,14 +15,14 @@ spec:
       http:                   #incoming request gets forward to internal service
         paths:
           - pathType: Prefix
-            path: /demo(/|$)(.*)
+            path: /demo
             backend:
               service:
                 name: {{.Values.application.name}}          #name of the service i.e metadata-name
                 port:                                       #spec-ports-port
                   number: 80
           - pathType: Prefix
-            path: /consumer(/|$)(.*)
+            path: /consumer
             backend:
               service:
                 name: {{.Values.application2.name}}
